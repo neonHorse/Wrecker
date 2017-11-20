@@ -43,7 +43,9 @@ public class SongListAdapter extends BaseAdapter implements Filterable {
             view = inflater.inflate(R.layout.list_item_song, null);
             holder = new ViewHolder();
 
-            holder.lblSongName = (TextView)view.findViewById(R.id.lblSongName);
+            holder.lblName = view.findViewById(R.id.lblName);
+            holder.lblAlbum = view.findViewById(R.id.lblAlbum);
+            holder.lblArtist = view.findViewById(R.id.lblArtist);
 
             view.setTag(holder);
         }
@@ -53,7 +55,9 @@ public class SongListAdapter extends BaseAdapter implements Filterable {
 
         Song s = (Song)getItem(i);
 
-        holder.lblSongName.setText(s.getName());
+        holder.lblName.setText(s.getName());
+        holder.lblArtist.setText(s.getArtist());
+        holder.lblAlbum.setText(s.getAlbum());
 
         return view;
     }
@@ -79,7 +83,9 @@ public class SongListAdapter extends BaseAdapter implements Filterable {
     }
 
     private class ViewHolder{
-        TextView lblSongName;
+        TextView lblName;
+        TextView lblArtist;
+        TextView lblAlbum;
     }
 
     private class ItemFilter extends Filter{

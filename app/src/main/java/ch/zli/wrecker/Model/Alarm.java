@@ -1,5 +1,9 @@
 package ch.zli.wrecker.Model;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -8,12 +12,14 @@ import java.util.List;
  * Created by admin on 07.11.2017.
  */
 
-public class Alarm {
-    private Calendar alarmTime;
+public class Alarm implements Serializable {
+    private int hour;
+    private int minute;
     private boolean isActive;
     private boolean needsVibrate;
-    private ArrayList<Day> recurrences;
+    private ArrayList<Integer> recurrences;
     private Song song;
+    private transient PendingIntent pendingIntent;
 
     public Alarm(){
         needsVibrate = false;
@@ -21,24 +27,28 @@ public class Alarm {
         recurrences = new ArrayList<>();
     }
 
-    public Alarm(Calendar alarmTime, Song song, boolean needsVibrate, ArrayList<Day> recurrences){
-        isActive = true;
-        this.alarmTime = alarmTime;
-        this.needsVibrate = needsVibrate;
-        this.recurrences = recurrences;
-        this.song = song;
+    public PendingIntent getPendingIntent() {
+        return pendingIntent;
+    }
+
+    public void setPendingIntent(PendingIntent pendingIntent) {
+        this.pendingIntent = pendingIntent;
     }
 
     public Song getSong() {
         return song;
     }
 
-    public ArrayList<Day> getRecurrences() {
-        return recurrences;
+    public int getHour() {
+        return hour;
     }
 
-    public Calendar getAlarmTime() {
-        return alarmTime;
+    public int getMinute() {
+        return minute;
+    }
+
+    public ArrayList<Integer> getRecurrences() {
+        return recurrences;
     }
 
     public boolean isActive() {
@@ -49,7 +59,7 @@ public class Alarm {
         return needsVibrate;
     }
 
-    public void setRecurrences(ArrayList<Day> recurrences) {
+    public void setRecurrences(ArrayList<Integer> recurrences) {
         this.recurrences = recurrences;
     }
 
@@ -61,11 +71,15 @@ public class Alarm {
         this.song = song;
     }
 
-    public void setAlarmTime(Calendar alarmTime) {
-        this.alarmTime = alarmTime;
-    }
-
     public void setNeedsVibrate(boolean needsVibrate) {
         this.needsVibrate = needsVibrate;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 }

@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/lblTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Time"
+        android:textColor="#00e1ff"
+        android:textSize="65sp" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/lblDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mo,tu,te,te,te,te,te"
+        android:textSize="12sp" />
+
+    <Switch
+        android:focusable="false"
+        android:id="@+id/switchActive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+

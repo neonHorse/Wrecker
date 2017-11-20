@@ -5,11 +5,19 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import ch.zli.wrecker.Model.Alarm;
 import ch.zli.wrecker.Model.Song;
 
 /**
@@ -17,10 +25,14 @@ import ch.zli.wrecker.Model.Song;
  */
 
 public class FileHandler {
+    private static final String ALARMS_FILENAME = "AllAlarms.ser";
+    private String alarmsFileName;
+
     private Context context;
 
     public FileHandler(Context context){
         this.context = context;
+        alarmsFileName = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + ALARMS_FILENAME;
     }
 
     public ArrayList<Song> getSongs(){
@@ -59,5 +71,35 @@ public class FileHandler {
         }
 
         return songs;
+    }
+
+    public ArrayList<Alarm> getAlarms(){
+        ArrayList<Alarm> alarms = new ArrayList<>();
+
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(alarmsFileName));
+
+            alarms = (ArrayList<Alarm>)ois.readObject();
+
+            ois.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return alarms;
+    }
+
+    public void saveAlarms(ArrayList<Alarm> alarms){
+        if(!alarms.isEmpty()) {
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(alarmsFileName));
+
+                oos.writeObject(alarms);
+                oos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

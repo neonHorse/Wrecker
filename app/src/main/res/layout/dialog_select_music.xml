@@ -2,7 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -15,12 +16,14 @@
             android:inputType="none"
             android:hint="Suche"
             android:focusable="true"
+            android:focusedByDefault="false"
             android:enabled="true"/>
     </android.support.design.widget.TextInputLayout>
 
     <ListView
         android:id="@+id/lvSongs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"/>
 
 </LinearLayout>

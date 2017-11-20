@@ -1,10 +1,12 @@
 package ch.zli.wrecker.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 13.11.2017.
  */
 
-public class Song {
+public class Song implements Serializable {
     private String artist;
     private String name;
     private String album;
